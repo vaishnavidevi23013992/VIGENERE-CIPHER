@@ -1,5 +1,5 @@
 # VIGENERE-CIPHER
-## EX. NO: 4
+## EX. NO: 1(D)
  
 
 ## IMPLEMETATION OF VIGENERE CIPHER
@@ -30,7 +30,57 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to encrypt the text
+void encryptVigenere(char text[], char key[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    
+    for (int i = 0; i < textLen; i++) {
+        if (isalpha(text[i])) {
+            char base = isupper(text[i]) ? 'A' : 'a';
+            text[i] = (text[i] - base + (toupper(key[i % keyLen]) - 'A')) % 26 + base;
+        }
+    }
+}
+
+// Function to decrypt the text
+void decryptVigenere(char text[], char key[]) {
+    int textLen = strlen(text);
+    int keyLen = strlen(key);
+    
+    for (int i = 0; i < textLen; i++) {
+        if (isalpha(text[i])) {
+            char base = isupper(text[i]) ? 'A' : 'a';
+            text[i] = (text[i] - base - (toupper(key[i % keyLen]) - 'A') + 26) % 26 + base;
+        }
+    }
+}
+
+int main() {
+    char text[100], key[100];
+
+    printf("Enter the plaintext: ");
+    scanf("%s", text);
+    printf("Enter the key: ");
+    scanf("%s", key);
+
+    encryptVigenere(text, key);
+    printf("Encrypted Text: %s\n", text);
+
+    decryptVigenere(text, key);
+    printf("Decrypted Text: %s\n", text);
+
+    return 0;
+}
+```
 
 ## OUTPUT
+ ![image](https://github.com/user-attachments/assets/ecef0b19-6f46-4a90-9d79-ea06cb5da8f9)
 
 ## RESULT
+The program is executed successfully.
